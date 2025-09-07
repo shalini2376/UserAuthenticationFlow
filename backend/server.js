@@ -33,7 +33,7 @@ app.use(session({
 
 // checking 
 app.get('/', async (req, res) => {
-    res.json(`server is running on PORT ${PORT}`)
+    res.json(`server is running on ${PORT}`)
 })
 
 // check if any user exists in DB
