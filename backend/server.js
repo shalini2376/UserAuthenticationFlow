@@ -20,14 +20,17 @@ app.use(cors({
   credentials: true
 }));
 
+const isProd = process.env.NODE_ENV === 'production';
+
 app.use(session({
     secret: process.env.SESSION_SECRET || 'insecure_dev_secret',
     resave: false,
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000 //1 day
-        // in production, add: secure: true, sameSite: 'none' (with HTTPS)
+        maxAge: 24 * 60 * 60 * 1000, //1 day
+        sameSite: isProd ? 'none' : 'lax',
+        secure: isProd,
     }
 }));
 
