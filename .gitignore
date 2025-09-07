@@ -1,0 +1,9 @@
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# Env files (don’t push secrets to GitHub)
+backend/.env
+frontend/.env
