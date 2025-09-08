@@ -12,10 +12,13 @@ const [loading, setLoading] = useState(true);
 
 async function fetchUser(){
 try{
-const res = await API.get('/api/dashboard');
-setUser(res.data.user || null);
+    const res = await API.get('/api/dashboard');
+    setUser(res.data.user || null);
 }catch(err){
-setUser(null);
+    if (err?.response?.status && err.response.status !== 401) {
+        console.error('fetchUser error:', err);
+      }
+    setUser(null);
 }finally{ setLoading(false); }
 }
 

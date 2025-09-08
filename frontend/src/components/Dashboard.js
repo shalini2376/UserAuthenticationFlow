@@ -12,11 +12,11 @@ const navigate = useNavigate();
 
 async function handleLogout(){
 try{
-await API.post('/api/logout');
-setUser(null);
-navigate('/login');
+    await API.post('/api/logout');
+    setUser(null);
+    navigate('/login');
 }catch(err){
-setMessage('Logout failed');
+    setMessage('Logout failed');
 }
 }
 

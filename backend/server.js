@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-  origin: 'https://userauthenticationflow.netlify.app' || 'http://localhost:3000',
+  origin: 'https://userauthenticationflow.netlify.app',
   credentials: true
 }));
 
@@ -86,6 +86,7 @@ app.post('/api/login', async (req, res) => {
         const match = await bcrypt.compare(password, user.password);
         if (!match) return res.status(400).json({error: 'Invalid credentials'});
 
+
         // save user id in session
         req.session.userId = user.id;
         res.json({message: 'Logged in '})
@@ -99,7 +100,7 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
-            console.error('Session destro error', err);
+            console.error('Session destroy error', err);
             return res.status(500).json({error: 'Could not log out'});
         }
         // clear cookie (default cookie name is connect.sid)
