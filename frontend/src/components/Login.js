@@ -16,13 +16,13 @@ async function handleSubmit(e){
 e.preventDefault();
 setMessage('');
 try{
-await API.post('/api/login', { email, password });
-const dash = await API.get('/api/dashboard');
-setUser(dash.data.user || null);
-navigate('/dashboard');
+    await API.post('/api/login', { email, password });
+    const dash = await API.get('/api/dashboard');
+    setUser(dash.data.user || null);
+    navigate('/dashboard');
 }catch(err){
-const msg = err?.response?.data?.error || 'Login failed';
-setMessage(msg);
+    const msg = err?.response?.data?.error || 'Login failed';
+    setMessage(msg);
 }
 }
 

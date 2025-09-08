@@ -16,16 +16,17 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-  origin: process.env.FRONTEND_ORIGIN || 'http://localhost:3000',
+  origin: 'https://userauthenticationflow.netlify.app' || 'http://localhost:3000',
   credentials: true
 }));
 
 const isProd = process.env.NODE_ENV === 'production';
 
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'insecure_dev_secret',
+    secret: process.env.SESSION_SECRET || 'insecure_dev_secret' ,
     resave: false,
     saveUninitialized: false,
+    rolling: true,
     cookie: {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000, //1 day
